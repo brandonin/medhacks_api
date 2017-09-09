@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  givenBy: MyString
+  dosage: MyString
+  givenDate: 2017-09-09 10:14:13
+
+two:
+  name: MyString
+  givenBy: MyString
+  dosage: MyString
+  givenDate: 2017-09-09 10:14:13
