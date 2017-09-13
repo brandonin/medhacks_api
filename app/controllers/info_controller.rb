@@ -6,24 +6,27 @@ class InfoController < ApplicationController
     @medications = Medication.all
     @appointments = Appointment.all
     @referrals = Referral.all
+    @testers = Tester.all
 
     render json: {:immunization => @immunizations,
                      :medication => @medications,
                      :appointment => @appointments,
-                     :referral => @referrals
+                     :referral => @referrals,
+                     :tester => @testers
                     }
   end
 
   # POST /immunizations
   def create
-    infoLabel = ['Immunization', 'Medication', 'Appointment', 'Referral']
+    infoLabel = ['Immunization', 'Medication', 'Appointment', 'Referral', 'Tester']
     infoLabel.each do |info|
       if params[info]
-        @variableToSave = info.new(params[info])
+        puts params[info].class
+        @variableToSave = eval(info).new(eval(params[info]))
       end
     end
 
-    if variableToSave.save
+    if @variableToSave.save
       render json: @variableToSave, status: :created, location: @variableToSave
     else
       render json: @variableToSave.errors, status: :unprocessable_entity
