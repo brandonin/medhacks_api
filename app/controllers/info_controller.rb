@@ -7,10 +7,10 @@ class InfoController < ApplicationController
     @appointments = Appointment.all
     @referrals = Referral.all
 
-    render :json => {:immunization => @immunizations,
+    render json: {:immunization => @immunizations,
                      :medication => @medications,
                      :appointment => @appointments,
-                     :referrals => @referrals
+                     :referral => @referrals
                     }
   end
 
