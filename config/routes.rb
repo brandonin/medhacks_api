@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :lols
+  resources :info
   resources :immunizations
   resources :referrals
   resources :medications
