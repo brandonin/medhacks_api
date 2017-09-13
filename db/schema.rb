@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170909203013) do
+ActiveRecord::Schema.define(version: 20170913214524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.string "examiner"
+    t.string "appointmentType"
+    t.string "appointmentStatus"
+    t.datetime "date"
+    t.string "street"
+    t.string "city"
+    t.string "postalCode"
+    t.string "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "immunizations", force: :cascade do |t|
     t.string "name"
@@ -30,6 +43,35 @@ ActiveRecord::Schema.define(version: 20170909203013) do
     t.datetime "updated_at", null: false
     t.string "pin"
     t.index ["auth_token"], name: "index_invitations_on_auth_token", unique: true
+  end
+
+  create_table "medications", force: :cascade do |t|
+    t.string "medication"
+    t.string "prescriber"
+    t.string "dose"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "referrals", force: :cascade do |t|
+    t.string "doctor"
+    t.datetime "startDate"
+    t.datetime "expirationDate"
+    t.integer "numberOfVisits"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "test2s", force: :cascade do |t|
+    t.jsonb "test"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.text "test", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  doctor: MyString
+  startDate: 2017-09-09 19:32:17
+  expirationDate: 2017-09-09 19:32:17
+  numberOfVisits: 1
+
+two:
+  doctor: MyString
+  startDate: 2017-09-09 19:32:17
+  expirationDate: 2017-09-09 19:32:17
+  numberOfVisits: 1

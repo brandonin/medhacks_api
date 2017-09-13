@@ -9,7 +9,7 @@ class PacsController < ApplicationController
     pacs = Invitation.where(auth_token: params[:token]).where(pin: params[:pin])
 
     if pacs.first
-      render json: {:url => "http://localhost:8042/osimis-viewer/app/index.html?study=7e3a98bb-9acc8a9d-82dea211-2c0e226a-b846dc26"}
+      render json: {:url => "http://localhost:8042/app/explorer.html"}
     else
       render json: {:errors => "The pair was wrong"}, status: 400
     end
