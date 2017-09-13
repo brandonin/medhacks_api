@@ -21,6 +21,7 @@ class InfoController < ApplicationController
       if params[info]
         @variableToSave = info.new(params[info])
       end
+    end
 
     if variableToSave.save
       render json: @variableToSave, status: :created, location: @variableToSave
