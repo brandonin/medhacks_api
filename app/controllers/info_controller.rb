@@ -21,11 +21,6 @@ class InfoController < ApplicationController
     @info = eval(params[:type]).create(log: params[:log])
     puts @info
     render json: {@info => @info, :type => params[:type]}, status: :created, location: @info
-    # if @variableToSave.save
-    #   render json: @variableToSave, status: :created, location: @variableToSave
-    # else
-    #   render json: @variableToSave.errors, status: :unprocessable_entity
-    # end
   end
 
   private
