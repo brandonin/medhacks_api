@@ -8,29 +8,24 @@ class InfoController < ApplicationController
     @referrals = Referral.all
     @testers = Tester.all
 
-    render json: {:immunization => @immunizations,
-                     :medication => @medications,
-                     :appointment => @appointments,
-                     :referral => @referrals,
-                     :tester => @testers
+    render json: {:immunizations => @immunizations,
+                     :medications => @medications,
+                     :appointments => @appointments,
+                     :referrals => @referrals,
+                     :testers => @testers
                     }
   end
 
-  # POST /immunizations
+  # POST /info
   def create
-    infoLabel = ['Immunization', 'Medication', 'Appointment', 'Referral', 'Tester']
-    infoLabel.each do |info|
-      if params[info]
-        puts params[info].class
-        @variableToSave = eval(info).new(eval(params[info]))
-      end
-    end
-
-    if @variableToSave.save
-      render json: @variableToSave, status: :created, location: @variableToSave
-    else
-      render json: @variableToSave.errors, status: :unprocessable_entity
-    end
+    @info = eval(params[:type]).create(log: params[:log])
+    puts @info
+    render json: {@info => @info, :type => params[:type]}, status: :created, location: @info
+    # if @variableToSave.save
+    #   render json: @variableToSave, status: :created, location: @variableToSave
+    # else
+    #   render json: @variableToSave.errors, status: :unprocessable_entity
+    # end
   end
 
   private
@@ -40,7 +35,7 @@ class InfoController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def immunization_params
-      params.require(:immunization).permit(:name, :dosage, :givenBy, :givenDate)
+    def info_params
+      params.require(:info).permit(:log)
     end
 end
